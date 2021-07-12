@@ -17,12 +17,14 @@ In this paper, we propose a fully end-to-end algorithm FD-GAN for image dehazing
 
 ## Prerequisites
 1. Ubuntu 18.04
-2. Python 3
+2. Python 3.6
 3. NVIDIA GPU + CUDA CuDNN (CUDA 8.0)
 
 ## Installation
-1. conda install pytorch=0.3.0 torchvision cuda80 -c pytorch
-2. Install python package:numpy,scipy,PIL,skimage,h5py
+1. pip install http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp36-cp36m-linux_x86_64.whl
+2. pip install torchvision == 0.2
+3. pip install scipy==1.0.0
+4. pip install scikit-image,opencv-python,pillow
 
 ## Demo using pre-trained model
 Since the proposed method uses hdf5 file to load the traning samples, the **generate_testsample.py** helps you to creat the testing or training sample yourself.
