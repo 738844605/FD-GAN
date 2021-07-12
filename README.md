@@ -26,6 +26,10 @@ In this paper, we propose a fully end-to-end algorithm FD-GAN for image dehazing
 3. pip install scipy==1.0.0
 4. pip install scikit-image,opencv-python,pillow
 
+## Test using pre-trained model
+```
+python test.py
+```
 ## Demo using pre-trained model
 Since the proposed method uses hdf5 file to load the traning samples, the **generate_testsample.py** helps you to creat the testing or training sample yourself.
 
