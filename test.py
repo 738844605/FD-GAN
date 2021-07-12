@@ -11,7 +11,7 @@ import os
 import cv2
 import models.dehaze1113  as net
 import torch.nn as nn
-os.environ["CUDA_VISIBLE_DEVICES"] = "4,5"
+os.environ["CUDA_VISIBLE_DEVICES"] = "4"
 
 #===== load model =====
 print('===> Loading model')
@@ -19,7 +19,7 @@ print('===> Loading model')
 netG = net.FDGAN()
 
 state_dict = torch.load('./test_model/netG_epoch_synthetic.pth')
-#ckp = torch.load('./test_model/netG_epoch_real.pth')
+#torch.load('./test_model/netG_epoch_real.pth')
 from collections import OrderedDict
 new_state_dict = OrderedDict()
 for k, v in state_dict.items():
@@ -32,23 +32,12 @@ if torch.cuda.device_count() > 1:
 
 #===== Load input image =====
 transform = transforms.Compose([
-    transforms.ToTensor(), 
-    #transforms.Normalize(mean = (0.5, 0.5, 0.5), std = (0.5, 0.5, 0.5))
+    transforms.ToTensor()
     ]
 )
 I_HAZE = 'IHAZE/hazy1'
-I_HAZE_GT = "D:\Image_dataset\# I-HAZY NTIRE 2018\GT1\\"
 O_HAZE='OHAZE/hazy1'
-O_HAZE_GT="D:\Image_dataset\# O-HAZY NTIRE 2018\GT1\\"
-SOTSI = 'SOTS/indoor/hazy'
-SOTSI_GT = "C:\\Users\FQL\Desktop\RESIDE-standard\SOTS\indoor\gt1\\"
-SOTSO = 'SOTSO/hazy'
-SOTSO_GT = "F:\SOTS\clear\\"
-HSTSS = 'HSTS/HAZY'
-HSTSS_GT = "F:\HSTS\CLEAR\\"
 
-HSTSR = "F:\HSTS\REAL\\"
-RTTS = "F:\RTTS\\"
 torch.backends.cudnn.benchmark = True
 origin_dir = 'SOTSI/hazy'
 output_dir = 'result/'
