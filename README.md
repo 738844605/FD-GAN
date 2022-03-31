@@ -20,11 +20,29 @@ In this paper, we propose a fully end-to-end algorithm FD-GAN for image dehazing
 2. Python 3.6
 3. NVIDIA GPU + CUDA CuDNN (CUDA 8.0)
 
-## Installation
+## Installation with low pytorch version
 1. pip install http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp36-cp36m-linux_x86_64.whl
 2. pip install torchvision == 0.2
 3. pip install scipy==1.0.0
 4. pip install scikit-image,opencv-python,pillow
+
+## Try to run demo.py with pytorch 1.10.0
+Make following changes in demo.py
+```
+from collections import OrderedDict
+new_state_dict = OrderedDict()
+for k, v in state_dict.items():
+	name = k[7:] # remove 'module.'
+	#
+	name = name.replace('.norm.1.', '.norm1.')
+	name = name.replace('.norm.2.', '.norm2.')
+	name = name.replace('.conv.1.', '.conv1.')
+	name = name.replace('.conv.2.', '.conv2.')
+	#
+	new_state_dict[name] = v
+# load params
+netG.load_state_dict(new_state_dict)
+```
 
 ## Test using pre-trained model
 ```
